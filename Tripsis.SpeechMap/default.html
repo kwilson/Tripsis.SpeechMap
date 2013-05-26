@@ -7,12 +7,23 @@
     
     <style type="text/css">
         html { height: 100% }
-        body { height: 100%; margin: 0; padding: 0 }
+        body { height: 100%; margin: 0;padding: 0; font-family: Georgia, Times, "Times New Roman", serif; }
         #map { height: 100%; background: #aaa; }
 
         header {
             position: absolute;
             display: none;
+        }
+
+        #command {
+            bottom: 0;
+            margin: 0 30%;
+            font-size: 2em;
+            position: absolute;
+            padding-bottom: 1em;
+            text-align: center;
+            text-shadow: -1px 1px 8px #ffc, 1px -1px 8px #fff;
+            width: 40%;
         }
     </style>
 
@@ -25,7 +36,5 @@
     <noscript>
         Sorry, this demo only works with JavaScript enabled.
     </noscript>
-    <div id="map"></div>
-
 </body>
 </html>

@@ -1,9 +1,17 @@
 ﻿define(["jquery", "speechRecognition", "commandParser", "mapping", "logger"], function ($, speechRecognition, commandParser, mapping, logger) {
 
+    var commandDisplay;
+
     function newCommandHandler(command) {
         logger.log("Command: " + command);
 
-        switch (command.toLowerCase()) {
+        // Show command
+        command = command.toLowerCase();
+        commandDisplay.stop().show().html(command);
+        commandDisplay.fadeOut(5000);
+
+        // Run command
+        switch (command) {
             case "up":
             case "north":
                 logger.log("pan north");
@@ -35,12 +43,20 @@
     $(function() {
 
         logger.log("App init");
+        
+        // Add required DOM elements
+        var body = $("body");
+        body.append("<div id='map' />");
 
+        commandDisplay = $("<div id='command' />");
+        body.append(commandDisplay);
+
+        // Create map
         mapping.create("map");
+        
+        // Start speech recognition
         var recogniser = speechRecognition.start();
-
         recogniser.done(newCommandHandler);
-
     });
 });
 
