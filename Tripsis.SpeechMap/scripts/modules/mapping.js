@@ -6,7 +6,7 @@
     function createMap(elementId) {
         var mapDiv = document.getElementById(elementId);
         map = new google.maps.Map(mapDiv, {
-            center: new google.maps.LatLng(37.4419, -122.1419),
+            center: new google.maps.LatLng(55.971032, -3.967317),
             zoom: 13,
             mapTypeId: google.maps.MapTypeId.ROADMAP,
             navigationControl: true,
