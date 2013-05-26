@@ -12,11 +12,16 @@
 
     function parse(command, callback) {
 
-        command = $.trim(command);
+        command = $.trim(command).toLowerCase();
         var matchingCommand = command;
 
         for (var i = commandList.length - 1; i >= 0; i--) {
             var thisCommand = commandList[i];
+            
+            if (command == thisCommand) {
+                matchingCommand = thisCommand;
+                break;
+            }
             
             if (command[0] == thisCommand[0]) {
                 matchingCommand = thisCommand;

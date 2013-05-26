@@ -35,6 +35,16 @@
                 logger.log("pan east");
                 mapping.panEast();
                 return;
+                
+            case "zoom in":
+                logger.log("zoom in");
+                mapping.zoomIn();
+                return;
+                
+            case "zoom out":
+                logger.log("zoom out");
+                mapping.zoomOut();
+                return;
 
         default:
         }

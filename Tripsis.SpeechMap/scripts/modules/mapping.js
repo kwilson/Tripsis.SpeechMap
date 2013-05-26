@@ -31,13 +31,25 @@
     function panWest() {
         map.panBy(0 - panDistance, 0);
     }
+    
+    function zoomIn() {
+        var currentZoom = map.getZoom();
+        map.setZoom(currentZoom + 1);
+    }
+    
+    function zoomOut() {
+        var currentZoom = map.getZoom();
+        map.setZoom(currentZoom - 1);
+    }
 
     return {
         create: createMap,
         panNorth: panNorth,
         panSouth: panSouth,
         panEast: panEast,
-        panWest: panWest
+        panWest: panWest,
+        zoomIn: zoomIn,
+        zoomOut: zoomOut
     };
 
 });
