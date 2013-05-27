@@ -6,9 +6,10 @@
         logger.log("Command: " + command);
 
         // Show command
-        command = command.toLowerCase();
-        commandDisplay.stop().show().html(command);
-        commandDisplay.fadeOut(5000);
+        commandDisplay.html(command);
+        commandDisplay.stop().show(function() {
+            commandDisplay.fadeOut(5000);
+        });
 
         // Run command
         switch (command) {

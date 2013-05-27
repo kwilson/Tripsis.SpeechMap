@@ -13,7 +13,7 @@
     function parse(command, callback) {
 
         command = $.trim(command).toLowerCase();
-        var matchingCommand = command;
+        var matchingCommand = "Sorry, command not recognised.";
 
         for (var i = commandList.length - 1; i >= 0; i--) {
             var thisCommand = commandList[i];
