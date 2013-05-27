@@ -65,9 +65,24 @@
         // Create map
         mapping.create("map");
         
-        // Start speech recognition
-        var recogniser = speechRecognition.start();
-        recogniser.done(newCommandHandler);
+        // Hook up speech recognition
+        var micArea = $("#mic");
+        var micButton = $("#mic a");
+
+        micButton.click(function (e) {
+            e.preventDefault();
+            micArea.fadeOut(1000);
+
+            var recogniser = speechRecognition.start();
+            recogniser.done(newCommandHandler);
+
+            var showMic = function() {
+                micArea.fadeIn(1000);
+            };
+
+            recogniser.error(showMic);
+            recogniser.end(showMic);
+        });
     });
 });
 

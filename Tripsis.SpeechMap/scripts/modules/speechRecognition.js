@@ -5,7 +5,9 @@
     }
     
     // Set up globals
-    var recognition, interimCallback, finalCallback;
+    var recognition,
+        interimCallback, finalCallback, errorCallback, endCallback;
+    
     setUpRecogniser();
     
     function setUpRecogniser() {
@@ -22,11 +24,17 @@
         }
 
         recognition.onend = function(e) {
-            recognition.start();
+            logger.log("End callback");
+            if (endCallback) {
+                endCallback();
+            }
         };
 
         recognition.onerror = function(e) {
-            logger.log("Speech recognition error.", e);
+            logger.log("Error callback");
+            if (errorCallback) {
+                errorCallback();
+            }
         };
 
         logger.log(recognition);
@@ -72,6 +80,18 @@
         done: function(callback) {
             if (callback) {
                 finalCallback = callback;
+            }
+        },
+        
+        end: function(callback) {
+            if (callback) {
+                endCallback = callback;
+            }
+        },
+        
+        error: function(callback) {
+            if (callback) {
+                errorCallback = callback;
             }
         }
     };

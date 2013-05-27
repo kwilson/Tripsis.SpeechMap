@@ -7,7 +7,7 @@
     
     <style type="text/css">
         html { height: 100% }
-        body { height: 100%; margin: 0;padding: 0; font-family: Georgia, Times, "Times New Roman", serif; }
+        body {position: relative; height: 100%; margin: 0;padding: 0; font-family: Georgia, Times, "Times New Roman", serif; }
         #map { height: 100%; background: #aaa; }
 
         header {
@@ -26,6 +26,39 @@
             text-shadow: -1px 1px 8px #ffc, 1px -1px 8px #fff;
             width: 40%;
         }
+
+        #mic {
+            background: #000000;
+            background: rgba(0, 0, 0, 0.8);
+            height: 100%;
+            position: absolute;
+            width: 100%;
+            z-index: 1000;
+        }
+
+            #mic a {
+                background: #cd3d3d;
+                border-radius: 1em;
+                display: block;
+                height: 148px;
+                left: 50%;
+                margin: -74px 0 0 -74px;
+                overflow: hidden;
+                position: absolute;
+                text-align: center;
+                top: 50%;
+                width: 148px;
+            }
+
+            #mic a:hover {
+                background: #e83a3a;
+            }
+
+                #mic a img {
+                    display: block;
+                    margin: 10px;
+                }
+
     </style>
 
     <script data-main="scripts/app" src="scripts/require.js"></script>
@@ -37,5 +70,8 @@
     <noscript>
         Sorry, this demo only works with JavaScript enabled.
     </noscript>
+    <div id="mic">
+        <a href="#"><img src="img/mic.png" width="128" height="128" alt="listen" /></a>
+    </div>
 </body>
 </html>

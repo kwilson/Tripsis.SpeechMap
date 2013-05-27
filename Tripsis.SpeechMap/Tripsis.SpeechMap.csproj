@@ -57,6 +57,7 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="img\mic.png" />
     <Content Include="scripts\app.js" />
     <Content Include="scripts\build.js" />
     <Content Include="scripts\modules\commandParser.js" />
