@@ -31,7 +31,9 @@
             background: #000000;
             background: rgba(0, 0, 0, 0.8);
             height: 100%;
+            left: 0;
             position: absolute;
+            top: 0;
             width: 100%;
             z-index: 1000;
         }
@@ -59,6 +61,17 @@
                     margin: 10px;
                 }
 
+        #nosupport {
+            border: solid 1px #999;
+            color: #666;
+            margin: 0 auto;
+            padding: 1em;
+            position: relative;
+            text-align: center;
+            top: 30%;
+            width: 40%;
+        }
+
     </style>
 
     <script data-main="scripts/app" src="scripts/require.js"></script>
@@ -68,10 +81,10 @@
         <h1>SpeechMap</h1>
     </header>
     <noscript>
-        Sorry, this demo only works with JavaScript enabled.
-    </noscript>
-    <div id="mic">
-        <a href="#"><img src="img/mic.png" width="128" height="128" alt="listen" /></a>
-    </div>
+        <div id='nosupport'>
+            <p>This is a demo app showing how speech recognition can be used to control a map element on the site.</p>
+            <p>To see it, you'll need a browser with <b>JavaScript</b> enabled and support for <b>webkitSpeechRecognition</b>.</p>
+        </div>
+    </noscript>    
 </body>
 </html>

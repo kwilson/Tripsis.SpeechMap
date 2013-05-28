@@ -1,14 +1,8 @@
 ﻿define(["commandParser", "logger"], function (commandParser, logger) {
     
-    if (!webkitSpeechRecognition) {
-        alert("Sorry, speech recognition is not available in your browser.");
-    }
-    
     // Set up globals
     var recognition,
-        interimCallback, finalCallback, errorCallback, endCallback;
-    
-    setUpRecogniser();
+        interimCallback, finalCallback, errorCallback, endCallback;       
     
     function setUpRecogniser() {
         logger.log("Creating recogniser");
@@ -41,6 +35,7 @@
     }
 
     function startListening() {
+        recognition || setUpRecogniser();
         recognition.start();
         recognition.onresult = resultHandler;
         return eventHandler;
@@ -71,6 +66,10 @@
             commandParser.parse(finalTranscript, finalCallback);
         }
     }
+    
+    function speechRecognitionIsSupported() {
+        return "webkitSpeechRecognition" in window;
+    }
 
     var eventHandler = {
         interim: function(callback) {
@@ -98,7 +97,8 @@
 
     return {
         start: startListening,
-        stop: stopListening
+        stop: stopListening,
+        isSupported: speechRecognitionIsSupported
     };
 
 });
