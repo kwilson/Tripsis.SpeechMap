@@ -1,4 +1,4 @@
-﻿define(["logger", "async!https://maps.googleapis.com/maps/api/js?sensor=false"], function (logger) {
+﻿define(["jquery", "logger", "async!https://maps.googleapis.com/maps/api/js?sensor=false"], function ($, logger) {
 
     var map,
         panDistance = 300;
@@ -14,6 +14,16 @@
                 style: google.maps.NavigationControlStyle.SMALL
             }
         });
+    }
+    
+    function geolocate() {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(function (position) {
+                var newPosition = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+                map.setZoom(15);
+                map.panTo(newPosition);
+            });
+        }
     }
     
     function panNorth() {
@@ -41,6 +51,23 @@
         var currentZoom = map.getZoom();
         map.setZoom(currentZoom - 1);
     }
+    
+    function gotoLocation(location) {
+        var requestUrl = "https://maps.googleapis.com/maps/api/geocode/json?address=" + location + "&sensor=false";
+        var request = $.ajax({
+            dataType: "json",
+            url: requestUrl
+        });
+
+        request.done(function(data) {
+            if (data.results && data.results.length > 0) {
+                var location = data.results[0].geometry.location;
+                var newPosition = new google.maps.LatLng(location.lat, location.lng);
+                map.setZoom(15);
+                map.panTo(newPosition);
+            }
+        });
+    }
 
     return {
         create: createMap,
@@ -49,7 +76,9 @@
         panEast: panEast,
         panWest: panWest,
         zoomIn: zoomIn,
-        zoomOut: zoomOut
+        zoomOut: zoomOut,
+        geolocate: geolocate,
+        gotoLocation: gotoLocation
     };
 
 });

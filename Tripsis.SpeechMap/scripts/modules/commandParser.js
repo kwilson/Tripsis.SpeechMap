@@ -9,14 +9,27 @@
     
     commandList.push("zoom in");
     commandList.push("zoom out");
+    
+    commandList.push("goto {location}");
+    
+    commandList.push("find me");
 
     function parse(command, callback) {
 
         command = $.trim(command).toLowerCase();
-        var matchingCommand = "Sorry, command not recognised.";
+        var matchingCommand = "Sorry, command not recognised.",
+            parameter = null;
+
+        var parameterMatch = new RegExp("{.+}");
 
         for (var i = commandList.length - 1; i >= 0; i--) {
             var thisCommand = commandList[i];
+            
+            if (thisCommand.indexOf('{') > -1) {
+                var parameterPart = parameterMatch.exec(thisCommand)[0];
+                thisCommand = thisCommand.replace(parameterPart, "").trim();
+                parameter = command.replace(thisCommand, "").trim();
+            }
             
             if (command == thisCommand) {
                 matchingCommand = thisCommand;
@@ -29,7 +42,7 @@
         }
 
         logger.log("Parsed command '" + command + "' as '" + matchingCommand + "'");
-        callback(matchingCommand);
+        callback(matchingCommand, parameter);
     }
 
     return {

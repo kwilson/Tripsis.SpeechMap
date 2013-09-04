@@ -27,38 +27,37 @@
             width: 40%;
         }
 
-        #mic {
-            background: #000000;
-            background: rgba(0, 0, 0, 0.8);
-            height: 100%;
-            left: 0;
+        #mics {
+            right: 1em;
             position: absolute;
-            top: 0;
-            width: 100%;
+            top: 1em;
+            height: 200px;
+            width: 200px;
             z-index: 1000;
         }
 
             #mic a {
-                background: #cd3d3d;
+                background: #aaa;
                 border-radius: 1em;
                 display: block;
-                height: 148px;
-                left: 50%;
+                left: 84px;
                 margin: -74px 0 0 -74px;
                 overflow: hidden;
                 position: absolute;
                 text-align: center;
-                top: 50%;
-                width: 148px;
+                top: 450px;
             }
 
-            #mic a:hover {
+            #mic a:hover,
+            #mic a.active {
                 background: #e83a3a;
             }
 
                 #mic a img {
                     display: block;
                     margin: 10px;
+                    height: auto;
+                    width: 48px;
                 }
 
         #nosupport {

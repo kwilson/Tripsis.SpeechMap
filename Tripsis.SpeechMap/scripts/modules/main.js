@@ -2,7 +2,7 @@
 
     var commandDisplay;
 
-    function newCommandHandler(command) {
+    function newCommandHandler(command, parameter) {
         logger.log("Command: " + command);
 
         // Show command
@@ -46,6 +46,16 @@
                 logger.log("zoom out");
                 mapping.zoomOut();
                 return;
+                
+            case "find me":
+                logger.log("geolocate");
+                mapping.geolocate();
+                return;
+                
+            case "goto":
+                logger.log("goto");
+                mapping.gotoLocation(parameter);
+                return;
 
         default:
         }
@@ -79,13 +89,17 @@
             // Hook up speech recognition
             micButton.click(function(e) {
                 e.preventDefault();
-                micArea.fadeOut(1000);
+
+                micButton.addClass("active");
+                // micArea.fadeOut(1000);
 
                 var recogniser = speechRecognition.start();
-                recogniser.done(newCommandHandler);
+                recogniser.done(function (command, parameter) {
+                    newCommandHandler(command, parameter);
+                });
 
-                var showMic = function() {
-                    micArea.fadeIn(1000);
+                var showMic = function () {
+                    micButton.removeClass("active");
                 };
 
                 recogniser.error(showMic);
